@@ -21,11 +21,13 @@ import http from 'node:http';
 // POST /users => Criar um usuário no back-end
 
 // Stateful - Salva os dados em memória
-// Stateless - Salva os dados em
+// Stateless - Salva os dados no banco
 
 // JSON - JavaScript Objet Notation
 
 // Cabeçalhos (Requisição/Resposta) => Metadados
+
+// HTTP Status Code
 
 const users = [];
 
@@ -45,10 +47,10 @@ const server = http.createServer((req, res) => {
       email: 'johndoe@example.com',
     });
 
-    return res.end('Criação de usuário');
+    return res.writeHead(201).end();
   }
 
-  return res.end('Helo World');
+  return res.writeHead(404).end();
 });
 
 server.listen(3333);
