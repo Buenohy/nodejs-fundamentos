@@ -16,7 +16,7 @@
 
 import { Readable, Writable, Transform } from 'node:stream';
 
-class OneToHundredStreams extends Readable {
+class OneToHundredStream extends Readable {
   index = 1;
   _read() {
     const i = this.index++;
@@ -48,6 +48,6 @@ class MultiplyByTenStream extends Writable {
   }
 }
 
-new OneToHundredStreams()
+new OneToHundredStream()
   .pipe(new InverseNumberStream())
   .pipe(new MultiplyByTenStream());
