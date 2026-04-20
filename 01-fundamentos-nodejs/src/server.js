@@ -1,4 +1,5 @@
 import http from 'node:http';
+import { json } from './middlewares/json.js';
 
 // - Criar usuários
 // - Listagem de usuários
@@ -34,22 +35,10 @@ const users = [];
 const server = http.createServer(async (req, res) => {
   const { method, url } = req;
 
-  const buffers = [];
-
-  for await (const chunck of req) {
-    buffers.push(chunck);
-  }
-
-  try {
-    req.body = JSON.parse(Buffer.concat(buffers).toString());
-  } catch {
-    req.body = null;
-  }
+  await json(req, res);
 
   if (method === 'GET' && url === '/users') {
-    return res
-      .setHeader('Content-type', 'application/json')
-      .end(JSON.stringify(users));
+    return res.end(JSON.stringify(users));
   }
 
   if (method === 'POST' && url === '/users') {
