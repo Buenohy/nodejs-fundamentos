@@ -33,6 +33,16 @@ import { routes } from './routes.js';
 
 // UUID => Unique Universal ID
 
+// Query Parameters: URL Stateful => Filtros, paginação, não-obrigatórios
+// Parametros nomeados para URL Stateful
+// http://localhost:3333/users?userId=1
+
+// Route Parameters: Identificação de recurso
+// GET http://localhost:3333/users/1
+// DELETE http://localhost:3333/users/1
+
+// Request Body: Envio de informações de um formulário (HTTPS)
+
 const server = http.createServer(async (req, res) => {
   const { method, url } = req;
 
